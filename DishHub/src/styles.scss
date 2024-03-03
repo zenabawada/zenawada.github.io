@@ -1,5 +1,51 @@
 /* You can add global styles to this file, and also import other style files */
+/* Application-wide Styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
 :root {
-    --primary-color: #007bff;
-    --accent-color: #d3e6ff;
+  --border-radius: 4px;
+}
+
+h1 {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
+}
+h2, h3 {
+  color: #444;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+}
+body {
+  margin: 2rem;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+body, input[type="text"], button {
+  color: #333;
+  font-family: "Inter", sans-serif;
+}
+button {
+  background-color: #eee;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  color: black;
+  font-size: 1rem;
+  padding: 1rem;
+}
+button:hover {
+  background-color: black;
+  color: white;
+}
+button:disabled {
+  background-color: #eee;
+  color: #aaa;
+  cursor: auto;
+}
+
+/* everywhere else */
+* {
+  font-family: Arial, Helvetica, sans-serif;
 }

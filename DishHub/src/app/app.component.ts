@@ -1,26 +1,16 @@
 import { Component } from '@angular/core';
-import { RouterOutlet, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import { RouterOutlet } from '@angular/router';
+import { RecipesComponent } from './recipes/recipes.component';
+import { RecipeSearchComponent } from './recipe-search/recipe-search.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HomeComponent, RouterModule],
-  // templateUrl: './app.component.html',
-  template: `
-  <main>
-    <a [routerLink]="['/']">
-      <header class="brand-name">
-        <img class="brand-logo" src="/assets/logo.svg" alt="logo" aria-hidden="true">
-      </header>
-    </a>
-    <section class="content">
-      <router-outlet></router-outlet>
-    </section>
-  </main>
-`,
+  imports: [RouterOutlet, RecipesComponent, RecipeSearchComponent, RouterLink],
+  templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'homes';
+  title = 'Dish Hub';
 }

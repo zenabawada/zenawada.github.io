@@ -1,0 +1,25 @@
+<form (ngSubmit)="searchRecipes()" class="search-recipes">
+  <input
+    name="search-recipes"
+    type="text"
+    [(ngModel)]="query"
+    placeholder="Search for recipes..."
+  />
+  <button type="submit">Search</button>
+</form>
+
+<div class="list">
+  <div *ngFor="let recipe of recipes" class="item">
+    <img [src]="recipe.recipe.image" />
+    <div class="content">
+      <h3>{{ recipe.recipe.label }}</h3>
+      <p>Source: {{ recipe.recipe.source }}</p>
+      <p>Calories: {{ recipe.recipe.calories }}</p>
+      <p
+        *ngIf="recipe.recipe.dietLabels && recipe.recipe.dietLabels.length > 0"
+      >
+        Diet: {{ recipe.recipe.dietLabels.join(", ") }}
+      </p>
+    </div>
+  </div>
+</div>
