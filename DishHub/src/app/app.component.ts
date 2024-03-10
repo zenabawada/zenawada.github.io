@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { RecipesComponent } from './recipes/recipes.component';
 import { RecipeSearchComponent } from './recipe-search/recipe-search.component';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RecipesComponent, RecipeSearchComponent, RouterLink],
+  imports: [RouterOutlet, RecipeSearchComponent, RouterLink, RouterModule, HomeComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

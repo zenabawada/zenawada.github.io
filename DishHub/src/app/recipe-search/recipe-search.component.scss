@@ -1,52 +1,58 @@
-.search-recipes {
+.recipe-search-container {
     display: flex;
-    width: fit-content;
-    // gap: 1rem;
-    border: solid 2px lightgrey;
-    border-radius: var(--border-radius);
+    flex-flow: column nowrap;
+    gap: 2rem;
 
-    input {
-        border: 0;
-        padding-left: 1rem;
+    .search-recipes {
+        display: flex;
+        width: fit-content;
+        // gap: 1rem;
+        border: solid 2px lightgrey;
+        border-radius: var(--border-radius);
+    
+        input {
+            border: 0;
+            padding-left: 1rem;
+        }
+    
+        button {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
     }
-
-    button {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
+    
+    .list {
+        display: grid;
+        grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) );
+        gap: 1rem;
+    
+        .item {
+            background-color: rgb(228, 228, 228);
+            border-radius: var(--border-radius);
+    
+            img {
+                width: 100%;
+                border-top-left-radius: var(--border-radius);
+                border-top-right-radius: var(--border-radius);
+            }
+    
+            .content {            
+                padding: 1rem;
+    
+                h3 {
+                    margin-bottom: 1rem;
+                    font-weight: 500;
+                }
+    
+                &>* {
+                    margin: 0;
+                }
+            }
+    
+             
+               
+            
+        }
     }
 }
 
-.list {
-    display: grid;
-    grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) );
-    gap: 1rem;
-
-    .item {
-        background-color: lightgrey;
-        border-bottom-left-radius: var(--border-radius);
-        border-bottom-right-radius: var(--border-radius);
-
-        img {
-            width: 100%;
-            border-top-left-radius: var(--border-radius);
-            border-top-right-radius: var(--border-radius);
-        }
-
-        .content {            
-            padding: 1rem;
-
-            h3 {
-                margin-bottom: 1rem;
-                font-weight: 500;
-            }
-
-            &>* {
-                margin: 0;
-            }
-        }
-
-         
-           
-        
-    }
-}

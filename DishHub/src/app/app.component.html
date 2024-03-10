@@ -1,6 +1,6 @@
-<a routerLink="/" class="nav-logo"
+<a [routerLink]="['/']" class="nav-logo"
   ><h1>{{ title }}</h1></a
 >
-<div class="recipe-details"></div>
-<app-recipe-search></app-recipe-search>
-<!-- <app-recipes></app-recipes> -->
+<section class="content">
+  <router-outlet></router-outlet>
+</section>
