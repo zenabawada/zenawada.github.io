@@ -29,15 +29,33 @@
         .item {
             background-color: rgb(228, 228, 228);
             border-radius: var(--border-radius);
+
+            a {
+                text-decoration: none;
+            }
     
             img {
                 width: 100%;
                 border-top-left-radius: var(--border-radius);
                 border-top-right-radius: var(--border-radius);
-            }
+            }            
     
             .content {            
                 padding: 1rem;
+                word-break: break-word;
+
+                .tag {
+                    background-color: #fff;
+                    padding: 0.25rem 0.5rem;
+                    width: fit-content;
+                    border-radius: var(--border-radius);
+                    font-size: 0.9rem;
+                    font-weight: 600;
+
+                    &.vegan {
+                        background-color: greenyellow;
+                    }
+                }
     
                 h3 {
                     margin-bottom: 1rem;

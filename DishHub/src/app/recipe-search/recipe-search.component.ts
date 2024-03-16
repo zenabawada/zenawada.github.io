@@ -19,9 +19,7 @@ export class RecipeSearchComponent implements OnInit {
   recipesList: any[] = [];
   isVeganMap: {[key: string]: boolean} = {};
 
-  constructor(private edamamService: EdamamService) { 
-    
-  }
+  constructor(private edamamService: EdamamService) {  }
 
   ngOnInit(): void {
     this.getRecipes('balanced');
@@ -34,7 +32,8 @@ export class RecipeSearchComponent implements OnInit {
         if (data && data.hits) {
           this.edamamService.setRecipesList(data.hits);
           this.recipesList = this.edamamService.recipesList;
-          // console.log(this.edamamService.getRecipesList());
+          this.calculateIsVegan();
+          console.log(this.edamamService.getRecipesList());
           
         } else {
           console.error('Hits not found in the response data.');
@@ -49,7 +48,7 @@ export class RecipeSearchComponent implements OnInit {
   calculateIsVegan() {
     this.recipesList.forEach((recipe) => {
       this.isVeganMap[recipe.recipe.label] = this.isVegan(recipe);
-      console.log('Recipe:', recipe.recipe.label, 'IsVegan:', this.isVeganMap[recipe.recipe.label]);
+      // console.log('Recipe:', recipe.recipe.label, 'IsVegan:', this.isVeganMap[recipe.recipe.label]);
     })
   }
 
