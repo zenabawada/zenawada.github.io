@@ -51,9 +51,6 @@ mobileNavIcon.onclick = function () {
   }
 };
 
-if (mobileNavIcon.classList.contains("open")) {
-}
-
 // Close Nav
 function closeNav() {
   mobileNavPanel.classList.remove("responsive");
@@ -131,6 +128,50 @@ if (scrollToTopBtn) {
   scrollToTopBtn.addEventListener("click", scrollToTop);
   document.addEventListener("scroll", scroll);
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Work Experience Bar Height
+  let workExperienceList = document.querySelectorAll(".work-experience-item");
+  workExperienceList.forEach((item) => {
+    // Add item height to timeline line height
+    let itemHeight = item.clientHeight;
+    let workTimeline = item.querySelector(".work-timeline");
+    workTimeline.style.setProperty("--timeline-height", itemHeight + "px");
+
+    // Add experience click link to container
+    let link = item.querySelector(".experience-link");
+    let linkHref = link.href;
+    let linkTarget = link.target;
+
+    // item.onclick = () => {
+    //   if (linkTarget) {
+    //     window.open(linkHref, "_blank");
+    //   } else {
+    //     window.location.href = linkHref;
+    //   }
+    // };
+
+    // Prevent propagation of click events on reference links
+    let referenceLinks = item.querySelectorAll(".work-reference-container a");
+    let linkIcon = item.querySelector(".link-icon");
+    referenceLinks.forEach((referenceLink) => {
+      referenceLink.onclick = (e) => {
+        e.stopPropagation();
+      };
+
+      // Change link icon on work reference hover
+      referenceLink.addEventListener("mouseover", () => {
+        linkIcon.style.transform = "translate(0)";
+        linkIcon.style.stroke = "var(--text-color)";
+      });
+
+      referenceLink.addEventListener("mouseout", () => {
+        linkIcon.style.transform = "";
+        linkIcon.style.stroke = "";
+      });
+    });
+  });
+});
 
 $(function () {
   $("#sendEmailForm").on("submit", function (e) {
