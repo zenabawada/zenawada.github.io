@@ -1435,9 +1435,16 @@ a.text-link__style:hover::before {
   transition: all 0.3s ease-in-out;
 }
 
-#sendEmailForm input[type=submit]:hover, #sendEmailForm input[type=submit]:focus {
+#sendEmailForm input[type=submit]:hover {
   background-color: var(--main-color-faded);
   color: var(--main-color);
+}
+
+#formMessage {
+  display: none;
+  padding: 3rem 0 0;
+  color: var(--main-color);
+  font-size: 1.1rem;
 }
 
 #sendEmailForm textarea {
@@ -2357,6 +2364,12 @@ a.text-link__style:hover::before {
   }
   .contact-content {
     align-items: flex-start;
+  }
+}
+@media only screen and (max-width: 800px) {
+  #sendEmailForm input[type=submit]:hover {
+    background-color: var(--main-color);
+    color: #fff;
   }
 }
 @media only screen and (min-width: 600px) and (max-width: 800px) {

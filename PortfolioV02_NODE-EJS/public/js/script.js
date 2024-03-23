@@ -190,10 +190,12 @@ $(function () {
         // Update the message div with the response from the server
         $("#formMessage").text(response);
         $("#sendEmailForm").hide();
+        $("#formMessage").show();
       },
       error: function (error) {
         console.log(error);
         $("#formMessage").text("Error sending email. Please try again later.");
+        $("#formMessage").hide();
       },
       complete: function () {
         $("#formLoader").hide();
