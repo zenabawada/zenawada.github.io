@@ -173,6 +173,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// Contact form
 $(function () {
   $("#sendEmailForm").on("submit", function (e) {
     e.preventDefault();
