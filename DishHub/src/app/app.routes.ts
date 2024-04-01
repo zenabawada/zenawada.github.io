@@ -5,6 +5,8 @@
 import { Routes } from '@angular/router';
 import { DetailsComponent } from './details/details.component';
 import { HomeComponent } from './home/home.component';
+import { CuisinesComponent } from './cuisines/cuisines.component';
+import { AboutComponent } from './about/about.component';
 
 const routeConfig: Routes = [
     {
@@ -16,6 +18,16 @@ const routeConfig: Routes = [
         path: 'details/:label',
         component: DetailsComponent,
         title: 'Recipe details'
+    },
+    {
+        path: 'cuisines',
+        component: CuisinesComponent,
+        title: 'Cuisines'
+    },
+    {
+        path: 'about',
+        component: AboutComponent,
+        title: 'About'
     }
   ];
 
