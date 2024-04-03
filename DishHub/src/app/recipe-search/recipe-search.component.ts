@@ -3,11 +3,12 @@ import { EdamamService } from '../edamam.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet, RouterLink } from '@angular/router';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @Component({
   selector: 'app-recipe-search',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterOutlet, RouterLink],
+  imports: [CommonModule, FormsModule, RouterOutlet, RouterLink, NgxSkeletonLoaderModule],
   templateUrl: './recipe-search.component.html',
   styleUrl: './recipe-search.component.scss'
 })
@@ -52,7 +53,7 @@ export class RecipeSearchComponent implements OnInit {
   }
 
   isVegan(recipe: any): boolean {
-    return recipe?.recipe?.tags?.includes('vegan');
+    return recipe?.recipe?.healthLabels?.includes('Vegetarian');
   }
 
   trackByFn(index: number, item: any) {

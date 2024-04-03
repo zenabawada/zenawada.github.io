@@ -10,11 +10,11 @@
   </form>
 
   <div class="list">
+    <!-- <ngx-skeleton-loader count="5" appearance="circle" /> -->
     <div *ngFor="let recipe of recipesList; trackBy: trackByFn" class="item">
       <a [routerLink]="['/details', recipe.recipe?.label]">
-        <img [src]="recipe.recipe?.image" />
-
-        <div class="content">
+        <div class="image-container">
+          <img [src]="recipe.recipe?.image" />
           <h3
             *ngIf="isVeganMap[recipe.recipe?.label] !== undefined"
             class="tag"
@@ -23,19 +23,21 @@
               'non-vegan': !isVeganMap[recipe.recipe?.label]
             }"
           >
-            {{ isVeganMap[recipe.recipe?.label] ? "Vegan" : "Non-Vegan" }}
+            {{ isVeganMap[recipe.recipe?.label] ? "Vegan" : "" }}
             <!-- Tags: {{ recipe.recipe.tags }} -->
           </h3>
+        </div>
+
+        <div class="content">
+          <h4>{{ recipe.recipe?.healthLabels[0] }}</h4>
           <h3>{{ recipe.recipe?.label }}</h3>
-          <p>Source: {{ recipe.recipe?.source }}</p>
-          <p>Calories: {{ recipe.recipe?.calories }}</p>
-          <p
+          <!-- <p
             *ngIf="
               recipe.recipe?.dietLabels && recipe.recipe?.dietLabels.length > 0
             "
           >
             Diet: {{ recipe.recipe?.dietLabels.join(", ") }}
-          </p>
+          </p> -->
         </div>
       </a>
     </div>
