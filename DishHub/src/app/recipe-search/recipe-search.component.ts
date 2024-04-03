@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EdamamService } from '../edamam.service';
-import { NgFor, NgIf, CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterOutlet, RouterLink, Router } from '@angular/router';
-import { Recipe } from '../recipe';
+import { RouterOutlet, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-search',
@@ -24,7 +23,7 @@ export class RecipeSearchComponent implements OnInit {
   ngOnInit(): void {
     this.getRecipes('balanced');
     this.calculateIsVegan();
-  } 
+  }
 
   getRecipes(dietType: string = '') {    
     this.edamamService.searchRecipes(this.query, dietType).subscribe(        

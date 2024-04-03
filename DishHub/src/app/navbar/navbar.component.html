@@ -1,13 +1,24 @@
-<nav class="navbar">
+<nav class="navbar flex justify-between items-center py-8">
   <div class="navbar-logo">
-    <img src="assets/logo.png" alt="My App Logo" />
+    <a routerLink="/" class="nav-logo"
+      ><h1 class="text-3xl font-bold">{{ title }}</h1></a
+    >
   </div>
-  <ul class="navbar-links">
-    <li><a routerLink="/">Home</a></li>
-    <li><a routerLink="/cuisines">Cuisines</a></li>
-    <li><a routerLink="/about">About</a></li>
+  <ul class="navbar-links flex space-x-4 link-hover">
+    <li>
+      <a routerLink="/">Home</a>
+    </li>
+    <li>
+      <a routerLink="/cuisines">Cuisines</a>
+    </li>
+    <li>
+      <a routerLink="/about">About</a>
+    </li>
   </ul>
   <div class="navbar-actions">
     <!-- Add login/logout buttons or user-related actions here -->
+    <div class="favorites">
+      <i class="fa-solid fa-heart fa-xl"></i>
+    </div>
   </div>
 </nav>
