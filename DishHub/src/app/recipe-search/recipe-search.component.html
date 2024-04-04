@@ -29,8 +29,12 @@
         </div>
 
         <div class="content">
-          <h4>{{ recipe.recipe?.healthLabels[0] }}</h4>
-          <h3>{{ recipe.recipe?.label }}</h3>
+          <h4
+            class="font-semibold uppercase text-sm tracking-wider text-slate-500"
+          >
+            {{ recipe.recipe?.healthLabels[0] }}
+          </h4>
+          <h3 class="text-xl font-serif">{{ recipe.recipe?.label }}</h3>
           <!-- <p
             *ngIf="
               recipe.recipe?.dietLabels && recipe.recipe?.dietLabels.length > 0
