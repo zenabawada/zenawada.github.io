@@ -9,5 +9,5 @@ import { RouterLink, RouterModule } from '@angular/router';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-  title = 'Dish Hub';
+  title = 'dishHub';
 }
