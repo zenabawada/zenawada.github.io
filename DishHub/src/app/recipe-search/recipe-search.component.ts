@@ -1,49 +1,123 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { EdamamService } from '../edamam.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet, RouterLink } from '@angular/router';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { Subject, finalize, takeUntil, tap, timeout } from 'rxjs';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-recipe-search',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterOutlet, RouterLink, NgxSkeletonLoaderModule],
+  imports: [CommonModule, FormsModule, RouterOutlet, RouterLink, NgxSkeletonLoaderModule, HttpClientModule],
   templateUrl: './recipe-search.component.html',
-  styleUrl: './recipe-search.component.scss'
+  styleUrl: './recipe-search.component.scss',
+  providers: [EdamamService]
 })
 
 
-export class RecipeSearchComponent implements OnInit {
+export class RecipeSearchComponent implements OnInit, OnDestroy {
   query: string = '';
   recipesList: any[] = [];
   isVeganMap: {[key: string]: boolean} = {};
+  items: any[] = [];
+  isLoading: boolean = true;
+  private unsubscribe$ = new Subject();
 
-  constructor(private edamamService: EdamamService) {  }
+  constructor(private edamamService: EdamamService) { }
 
   ngOnInit(): void {
-    this.getRecipes('balanced');
-    this.calculateIsVegan();
+    console.log("Page loaded");
+    this.startBackgroundTask();
   }
 
-  getRecipes(dietType: string = '') {    
-    this.edamamService.searchRecipes(this.query, dietType).subscribe(        
-      (data: any) => {
-        if (data && data.hits) {
-          this.edamamService.setRecipesList(data.hits);
-          this.recipesList = this.edamamService.recipesList;
-          this.calculateIsVegan();
-          console.log(this.edamamService.getRecipesList());
-          
-        } else {
-          console.error('Hits not found in the response data.');
-        }
-      },
-      (error) => {
-        console.error('Error fetching recipes', error);
-      }
-    );    
+  ngOnDestroy(): void {
+    this.unsubscribe$.next([]);
+    this.unsubscribe$.complete();
   }
+
+  async startBackgroundTask(): Promise<void> {
+    try {
+      await this.delay(2000); // Delay for 2 seconds
+      this.getRecipes('balanced');
+    } catch (error) {
+      console.error('Error during background task:', error);
+    }
+  }
+
+  async getRecipes(dietType: string = ''): Promise<void> {
+    try {
+      const data = await this.edamamService.searchRecipes(this.query, dietType).toPromise();
+      if (data && data.hits) {
+        this.recipesList = data.hits;
+      } else {
+        console.error('Hits not found in the response data.');
+      }
+    } catch (error) {
+      console.error('Error fetching recipes', error);
+    } finally {
+      this.isLoading = false;
+    }
+  }
+
+  private delay(ms: number): Promise<void> {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  // ngOnInit(): void {    
+  //   // this.items = Array.from({length: 10});   
+  //   setTimeout(() => {
+  //     console.log("after 5 seconds???"); 
+      
+  //     this.getRecipes('balanced');
+  //     // this.calculateIsVegan();
+  //   }, 2000);
+  // }
+  
+
+  // getRecipes(dietType: string = '') {    
+  //   this.edamamService.searchRecipes(this.query, dietType).subscribe(        
+  //     (data: any) => {             
+  //       if (data && data.hits) {
+  //         console.log(data.hits);
+  //         this.edamamService.setRecipesList(data.hits);          
+  //         this.recipesList = this.edamamService.recipesList;
+  //         this.calculateIsVegan();
+  //       } else {
+  //         console.error('Hits not found in the response data.');
+  //       }
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching recipes', error);
+  //     }
+  //   );    
+  // }
+
+
+
+  // private getRecipes(dietType: string = '') {
+  //   this.edamamService.searchRecipes(this.query, dietType).pipe(
+  //     tap({
+        
+  //       next: (data) => {
+          
+  //         if (data && data.hits) {
+
+  //             console.log(data.hits);
+  //             this.edamamService.setRecipesList(data.hits);
+  //             this.recipesList = data.hits;
+  //             // this.calculateIsVegan();
+
+  //          }
+  //       },
+  //       error: (error) => alert(error),
+        
+  //     }),
+  //     finalize(() => this.isLoading = false),
+  //     takeUntil(this.unsubscribe$)).subscribe();
+  // }
 
   calculateIsVegan() {
     this.recipesList.forEach((recipe) => {
@@ -67,4 +141,5 @@ export class RecipeSearchComponent implements OnInit {
       this.getRecipes('balanced');
     }
   }
+
 }

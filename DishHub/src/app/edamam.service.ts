@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +14,13 @@ export class EdamamService {
 
   constructor(private http: HttpClient) { }
 
-  searchRecipes(query: string, dietType: string): Observable<any> {
+  public searchRecipes(query: string, dietType: string): Observable<any> {
     let apiUrl = `${this.apiUrlBase}&q=${query}`;
+    
     if (dietType) {
       apiUrl += `&diet=${dietType}`
     }
+    
     return this.http.get<any[]>(apiUrl);
   }
 
