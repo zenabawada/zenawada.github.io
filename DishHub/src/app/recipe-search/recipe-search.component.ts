@@ -29,8 +29,8 @@ export class RecipeSearchComponent implements OnInit, OnDestroy {
   constructor(private edamamService: EdamamService) { }
 
   ngOnInit(): void {
-    console.log("Page loaded");
     this.startBackgroundTask();
+    this.initializeItems();
   }
 
   ngOnDestroy(): void {
@@ -38,9 +38,15 @@ export class RecipeSearchComponent implements OnInit, OnDestroy {
     this.unsubscribe$.complete();
   }
 
+  initializeItems(): void {
+    for (let i = 0; i < 10; i++) {
+      this.items.push(i);
+    }
+  }
+
   async startBackgroundTask(): Promise<void> {
     try {
-      await this.delay(2000); // Delay for 2 seconds
+      await this.delay(1000); // Delay for 2 seconds
       this.getRecipes('balanced');
     } catch (error) {
       console.error('Error during background task:', error);

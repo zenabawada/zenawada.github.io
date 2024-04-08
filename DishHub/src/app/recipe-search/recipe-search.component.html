@@ -1,5 +1,5 @@
 <article class="recipe-search-container">
-  <!-- <form (ngSubmit)="searchRecipes()" class="search-recipes">
+  <form (ngSubmit)="searchRecipes()" class="search-recipes">
     <input
       name="search-recipes"
       type="text"
@@ -7,7 +7,7 @@
       placeholder="Search for recipes..."
     />
     <button type="submit">Search</button>
-  </form> -->
+  </form>
 
   <div class="recipes-wrapper">
     <div class="list" *ngIf="!isLoading">
@@ -40,10 +40,16 @@
         </a>
       </div>
     </div>
-    <div class="skeleton-loader" *ngIf="isLoading">
-      <!-- <div *ngFor="let item of items; let i = index"> -->
-      <ngx-skeleton-loader count="5" appearance="line" />
-      <!-- </div> -->
+    <div class="skeleton-loader list" *ngIf="isLoading">
+      <div *ngFor="let item of items; let i = index">
+        <ngx-skeleton-loader
+          [theme]="{
+            'height.px': 250
+          }"
+        />
+        <ngx-skeleton-loader />
+        <ngx-skeleton-loader />
+      </div>
     </div>
   </div>
 </article>
