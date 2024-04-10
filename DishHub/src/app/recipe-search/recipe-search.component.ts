@@ -29,6 +29,7 @@ export class RecipeSearchComponent implements OnInit, OnDestroy {
   constructor(private edamamService: EdamamService) { }
 
   ngOnInit(): void {
+    this.calculateIsVegan();
     this.startBackgroundTask();
     this.initializeItems();
   }
@@ -38,6 +39,7 @@ export class RecipeSearchComponent implements OnInit, OnDestroy {
     this.unsubscribe$.complete();
   }
 
+  // Start skeleton items
   initializeItems(): void {
     for (let i = 0; i < 10; i++) {
       this.items.push(i);
@@ -58,6 +60,8 @@ export class RecipeSearchComponent implements OnInit, OnDestroy {
       const data = await this.edamamService.searchRecipes(this.query, dietType).toPromise();
       if (data && data.hits) {
         this.recipesList = data.hits;
+        this.edamamService.setRecipesList(data.hits);    
+        this.calculateIsVegan();
       } else {
         console.error('Hits not found in the response data.');
       }
