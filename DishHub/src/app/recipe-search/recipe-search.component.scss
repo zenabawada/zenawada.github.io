@@ -62,6 +62,34 @@
                         color: #155217;
                     }
                 }
+
+                .favorite {
+                    .favorite-icon {
+                        position: absolute;
+                        top: 20px;
+                        right: 10px;
+                    }
+
+                    & .fa-regular {
+                        opacity: 1;
+                    }
+
+                    & .fa-solid {
+                        opacity: 0;
+                    }
+
+                    &:hover {
+                        .fa-heart {
+                            &.fa-regular {
+                                opacity: 0;
+                            }
+                            
+                            &.fa-solid {
+                                opacity: 1;
+                            }
+                        }
+                    }
+                }
             }
                    
     

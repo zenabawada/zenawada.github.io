@@ -6,6 +6,7 @@ import { RouterOutlet, RouterLink } from '@angular/router';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { Subject, finalize, takeUntil, tap, timeout } from 'rxjs';
 import { HttpClientModule } from '@angular/common/http';
+import { Recipe } from '../recipe';
 
 
 @Component({
@@ -150,6 +151,12 @@ export class RecipeSearchComponent implements OnInit, OnDestroy {
     } else {
       this.getRecipes('balanced');
     }
+  }
+
+  saveFavorite(e: MouseEvent, recipe: any) {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log(`${recipe?.recipe?.label} has been favorited.`);
   }
 
 }
